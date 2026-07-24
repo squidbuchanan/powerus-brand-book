@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Powerus / Brand Operating System / V2.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css?v=22" />
+<link rel="stylesheet" href="sections.css?v=78" />
+<!-- Declared so the bundler inlines these and exposes them via window.__resources.
+     JS files build DOM with these paths at runtime; the runtime fixup below
+     rewrites attributes to blob URLs after each script runs. -->
+</head>
+<body>
+<!-- Hidden <img> references so the bundler inlines every asset used by JS.
+     Display:none; aria-hidden so they don't render. The runtime fixup script
+     below rewrites JS-injected paths to the resulting blob URLs. -->
+<div aria-hidden="true" style="display:none">
+  <img src="assets/logo/powerus-lockup-charcoal.png" />
+  <img src="assets/logo/powerus-lockup-bone.png" />
+  <img src="assets/logo/icon-dark.svg" />
+  <img src="assets/logo/icon-light.svg" />
+  <img src="assets/logo/icon-mark.svg" />
+  <img src="assets/cert/us-flag.png" />
+  <img src="assets/cert/ndaa.png" />
+  <img src="assets/cert/blue-uas.png" />
+  <img src="assets/photo/agriculture-hero.png" />
+  <img src="assets/photo/counter-uas-hero.png" />
+  <img src="assets/photo/defense-hero.png" />
+  <img src="assets/photo/fire-hero.png" />
+  <img src="assets/photo/fpv-desert.png" />
+  <img src="assets/photo/fpv-platforms.jpg" />
+  <img src="assets/photo/guardian-hero.png" />
+  <img src="assets/photo/heavy-lift.jpg" />
+  <img src="assets/photo/kaizen-drone.png" />
+  <img src="assets/photo/logistics-hero.jpg" />
+  <img src="assets/photo/maritime-hero.png" />
+  <img src="assets/photo/search-rescue-hero.png" />
+  <img src="assets/photo/tactical-fpv.jpg" />
+  <img src="assets/photo/training-hero.jpeg" />
+  <img src="assets/photo/xfold-spy.png" />
+  <img src="assets/refs/slick-guardian.png" />
+  <img src="assets/refs/slick-matrix-12.png" />
+  <img src="assets/refs/slick-xfold.png" />
+</div>
+
+<template id="__bundler_thumbnail" data-bg-color="#0F1411">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#0F1411"/>
+  </svg>
+</template>
+
+<div class="utility">
+  <div class="util-l">
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open contents" aria-expanded="false"><span class="bars"></span><span class="nt-label" id="nt-label">Contents</span></button>
+    <span class="live">LIVE / V2.0 / JUL 2026</span>
+  </div>
+  <div class="util-c">INTERNAL // SALES // DESIGN</div>
+  <div class="util-r">
+    <span>POWERUS_BBL_001</span>
+    <span>PG <span id="pg-now">00</span><span style="opacity:.5"> / 23</span></span>
+  </div>
+</div>
+
+<div class="shell">
+
+<div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+
+<aside class="rail">
+  <div class="brand">
+    <img src="assets/logo/powerus-lockup-charcoal.png" alt="Powerus" />
+  </div>
+  <div class="rail-meta">
+    Brand Operating System<br/>
+    V2.0 — July 2026<br/>
+    Issued by Brand Office
+  </div>
+  <nav>
+    <ol id="toc"></ol>
+  </nav>
+  <div class="rail-meta" style="border-top:1px solid var(--hairline); padding-top:14px;">
+    Powering the future<br/>of autonomy.
+  </div>
+</aside>
+
+<main id="main"></main>
+
+</div>
+
+<script>
+/* ─────────────────────────────────────────────────────────────────
+   Bundle resolver — rewrites assets/* paths to blob URLs at runtime.
+   When standalone-bundled, window.__resources is a map of original
+   paths → blob URLs; on disk this is undefined and we no-op so the
+   page works both ways. Runs once after all section scripts finish
+   (defer below), then a MutationObserver catches late insertions.
+   ───────────────────────────────────────────────────────────────── */
+(function () {
+  const R = window.__resources;
+  if (!R) return;
+
+  function resolve(p) {
+    if (!p) return p;
+    // Strip leading ./, take the assets/... portion if present
+    const m = String(p).match(/(?:^|[^a-z0-9])(assets\/[^\s"'\)?#]+)/i);
+    if (!m) return null;
+    return R[m[1]] || null;
+  }
+
+  function fixAttr(el, attr) {
+    const v = el.getAttribute(attr);
+    if (!v) return;
+    if (v.startsWith('blob:') || v.startsWith('data:') || /^https?:/i.test(v)) return;
+    const r = resolve(v);
+    if (r) el.setAttribute(attr, r);
+  }
+
+  function fixStyle(el) {
+    const s = el.getAttribute('style');
+    if (!s || s.indexOf('assets/') === -1) return;
+    const next = s.replace(/url\((['"]?)([^)'"]+)\1\)/g, (m, q, url) => {
+      const r = resolve(url);
+      return r ? `url(${q}${r}${q})` : m;
+    });
+    if (next !== s) el.setAttribute('style', next);
+  }
+
+  function sweep(root) {
+    if (!root || root.nodeType !== 1) return;
+    if (root.matches) {
+      if (root.matches('[src]')) fixAttr(root, 'src');
+      if (root.matches('[href]')) fixAttr(root, 'href');
+      if (root.hasAttribute && root.hasAttribute('style')) fixStyle(root);
+    }
+    if (root.querySelectorAll) {
+      root.querySelectorAll('[src]').forEach(e => fixAttr(e, 'src'));
+      root.querySelectorAll('[href]').forEach(e => fixAttr(e, 'href'));
+      root.querySelectorAll('[style*="assets/"]').forEach(fixStyle);
+    }
+  }
+
+  window.__resolveAsset = resolve;
+  window.__sweepAssets = sweep;
+
+  // Pre-process HTML strings BEFORE they hit the DOM, so the browser never
+  // attempts to fetch the literal "assets/..." paths (which would fail and
+  // trigger the bundler's [bundle] error overlay). We intercept the two
+  // injection paths used by sections.js / sections-2.js / sections-3.js.
+  function rewriteHtmlString(html) {
+    if (typeof html !== 'string' || html.indexOf('assets/') === -1) return html;
+    return html.replace(/(["'(=])(assets\/[A-Za-z0-9._\-\/]+)/g, (m, lead, p) => {
+      const r = R[p];
+      return r ? lead + r : m;
+    });
+  }
+  const origIAH = Element.prototype.insertAdjacentHTML;
+  Element.prototype.insertAdjacentHTML = function (pos, html) {
+    return origIAH.call(this, pos, rewriteHtmlString(html));
+  };
+  const innerDesc = Object.getOwnPropertyDescriptor(Element.prototype, 'innerHTML');
+  Object.defineProperty(Element.prototype, 'innerHTML', {
+    configurable: true,
+    enumerable: innerDesc.enumerable,
+    get: innerDesc.get,
+    set: function (html) { innerDesc.set.call(this, rewriteHtmlString(html)); }
+  });
+
+  // Catch any DOM inserted after our initial pass (e.g. lazy panels).
+  const mo = new MutationObserver(muts => {
+    for (const m of muts) {
+      for (const n of m.addedNodes) sweep(n);
+      if (m.type === 'attributes' && m.target) {
+        const t = m.target;
+        if (m.attributeName === 'src') fixAttr(t, 'src');
+        else if (m.attributeName === 'href') fixAttr(t, 'href');
+        else if (m.attributeName === 'style') fixStyle(t);
+      }
+    }
+  });
+  mo.observe(document.documentElement, {
+    childList: true, subtree: true,
+    attributes: true, attributeFilter: ['src', 'href', 'style']
+  });
+})();
+</script>
+<script src="toc.js?v=4"></script>
+<script src="sections.js?v=56"></script>
+<script src="sections-2.js?v=54"></script>
+<script src="sections-3.js?v=1"></script>
+<script src="sections-4.js?v=1"></script>
+<script src="reorder-motion.js?v=2"></script>
+<script src="cover-motion.js?v=11"></script>
+<script>
+  // After all section scripts have run synchronously, sweep the whole
+  // document once so any literal assets/* paths inside JS-injected
+  // innerHTML are upgraded to blob URLs before the browser tries to
+  // load them. (MutationObserver above handles anything later.)
+  if (window.__sweepAssets) window.__sweepAssets(document.body);
+</script>
+<script>
+/* ─────────────────────────────────────────────────────────────────
+   Number-scramble motion — Motion 02
+   Each digit cycles random 0–9 then locks left→right.
+   Total settle: ~280ms scramble + (digits × 28ms) ≈ 400–500ms.
+   Loops every 3.6s while the motion panel is in view.
+   ───────────────────────────────────────────────────────────────── */
+(function () {
+  const motionSection = document.getElementById('motion');
+  if (!motionSection) return;
+  const scramblers = motionSection.querySelectorAll('[data-scramble]');
+  if (!scramblers.length) return;
+
+  function runOne(el) {
+    const target = String(el.dataset.scramble);
+    const valEl = el.querySelector('.val');
+    if (!valEl) return;
+
+    // Build per-digit spans on first run
+    if (valEl.children.length !== target.length) {
+      valEl.innerHTML = target.split('').map(() =>
+        `<span class="digit scrambling">0</span>`
+      ).join('');
+    } else {
+      valEl.querySelectorAll('.digit').forEach(d => d.classList.add('scrambling'));
+    }
+    const digits = valEl.querySelectorAll('.digit');
+
+    const scrambleStart = performance.now();
+    const scrambleDuration = 280;
+
+    function tick(now) {
+      const elapsed = now - scrambleStart;
+      digits.forEach(d => {
+        if (d.classList.contains('scrambling')) {
+          d.textContent = Math.floor(Math.random() * 10);
+        }
+      });
+      if (elapsed < scrambleDuration) {
+        requestAnimationFrame(tick);
+      } else {
+        digits.forEach((d, i) => {
+          setTimeout(() => {
+            d.textContent = target[i];
+            d.classList.remove('scrambling');
+          }, i * 28);
+        });
+      }
+    }
+    requestAnimationFrame(tick);
+  }
+
+  function runAll() {
+    scramblers.forEach((el, i) => setTimeout(() => runOne(el), i * 140));
+  }
+
+  let interval = null;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting && !interval) {
+        runAll();
+        interval = setInterval(runAll, 3600);
+      } else if (!e.isIntersecting && interval) {
+        clearInterval(interval);
+        interval = null;
+      }
+    });
+  }, { threshold: 0.15 });
+  io.observe(motionSection);
+})();
+
+/* ─────────────────────────────────────────────────────────────────
+   Stroke-on icon — Motion 01
+   Inlines the icon SVG, normalizes each path to pathLength=1 so
+   the CSS dasharray:1 / dashoffset:1→0 animation draws cleanly.
+   ───────────────────────────────────────────────────────────────── */
+(async function () {
+  const slots = document.querySelectorAll('[data-stroke-icon]');
+  if (!slots.length) return;
+  let svgText;
+  try {
+    const url = (window.__resolveAsset && window.__resolveAsset('assets/logo/icon-mark.svg')) || 'assets/logo/icon-mark.svg';
+    const res = await fetch(url);
+    svgText = await res.text();
+  } catch (e) { return; }
+  slots.forEach(slot => {
+    slot.innerHTML = svgText;
+    const svg = slot.querySelector('svg');
+    if (!svg) return;
+    svg.removeAttribute('width');
+    svg.removeAttribute('height');
+    svg.setAttribute('fill', 'none');
+    const paths = svg.querySelectorAll('path');
+    paths.forEach((p) => {
+      p.setAttribute('pathLength', '1');
+    });
+  });
+})();
+
+/* ─────────────────────────────────────────────────────────────────
+   Section 20 — Downloads / Asset library
+   Wires up:
+     • [data-grab-group="<id>"]  → sequentially triggers each
+       sibling .dl-cta download (with a small stagger so browsers
+       don't dedupe or block the chain).
+     • [data-gen-tokens="css"]   → builds a CSS variables file on
+       the fly and triggers a download.
+   ───────────────────────────────────────────────────────────────── */
+(function () {
+  const dlSection = document.getElementById('downloads');
+  if (!dlSection) return;
+
+  // ─── Grab-all: trigger every <a.dl-cta> in the matching .dl-rows
+  dlSection.querySelectorAll('[data-grab-group]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.getAttribute('data-grab-group');
+      const list = dlSection.querySelector(`.dl-rows[data-group="${id}"]`);
+      if (!list) return;
+      const links = [...list.querySelectorAll('a.dl-cta[href]')]
+        .filter(a => a.getAttribute('href') !== '#'
+                  && !a.target /* skip "Open" external links */);
+      btn.classList.add('busy');
+      const original = btn.textContent;
+      btn.textContent = 'STARTING…';
+      links.forEach((a, i) => {
+        setTimeout(() => {
+          // Programmatic click on a fresh anchor — works for both
+          // disk-served paths and bundled blob URLs alike.
+          const href = a.getAttribute('href');
+          const name = a.getAttribute('download') || href.split('/').pop();
+          const ghost = document.createElement('a');
+          ghost.href = href;
+          ghost.download = name;
+          ghost.style.display = 'none';
+          document.body.appendChild(ghost);
+          ghost.click();
+          document.body.removeChild(ghost);
+          btn.textContent = `DOWNLOADING · ${i + 1} / ${links.length}`;
+          if (i === links.length - 1) {
+            setTimeout(() => {
+              btn.classList.remove('busy');
+              btn.textContent = original;
+            }, 900);
+          }
+        }, i * 320);
+      });
+    });
+  });
+
+  // ─── Tokens generator: build a small CSS file and download it
+  dlSection.querySelectorAll('[data-gen-tokens="css"]').forEach(a => {
+    a.addEventListener('click', (ev) => {
+      ev.preventDefault();
+      const css = [
+        '/* Powerus brand tokens — V2.0 / July 2026 */',
+        '/* Issued by the Powerus Brand Office. Do not modify. */',
+        '',
+        ':root {',
+        '  /* Brand surfaces */',
+        '  --powerus-bone:     #F5F1E8;  /* Primary surface */',
+        '  --powerus-char:     #161616;  /* Primary ink */',
+        '  --powerus-graphite: #3A3A38;  /* Secondary ink */',
+        '  --powerus-stone:    #9A938A;  /* Tertiary / meta */',
+        '',
+        '  /* Signal — reserved, < 5% of any composition */',
+        '  --powerus-ember:    #FF6200;',
+        '',
+        '  /* Earth tones — photography only */',
+        '  --powerus-clay:     #A8806A;',
+        '  --powerus-moss:     #6F7158;',
+        '  --powerus-dust:     #C2B5A0;',
+        '  --powerus-basalt:   #2B2925;',
+        '',
+        '  /* Type stack */',
+        "  --powerus-sans: 'Manrope', system-ui, sans-serif;",
+        "  --powerus-mono: 'JetBrains Mono', ui-monospace, monospace;",
+        '}',
+        ''
+      ].join('\n');
+      const blob = new Blob([css], { type: 'text/css' });
+      const url = URL.createObjectURL(blob);
+      const ghost = document.createElement('a');
+      ghost.href = url;
+      ghost.download = 'powerus-tokens.css';
+      ghost.style.display = 'none';
+      document.body.appendChild(ghost);
+      ghost.click();
+      document.body.removeChild(ghost);
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    });
+  });
+})();
+
+/* ─────────────────────────────────────────────────────────────────
+   LUT scope panels — stroke-on when scrolled into view.
+   Adds .in-view class which triggers all the CSS transitions.
+   ───────────────────────────────────────────────────────────────── */
+(function () {
+  const panels = document.querySelectorAll('.curve-scope');
+  if (!panels.length) return;
+  if (!('IntersectionObserver' in window)) {
+    panels.forEach(p => p.classList.add('in-view'));
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in-view');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.25 });
+  panels.forEach(p => io.observe(p));
+})();
+</script>
+<script>
+/* ─────────────────────────────────────────────────────────────────
+   Mobile navigation — off-canvas drawer.
+   The side rail becomes a slide-in drawer under ≤1100px. The utility-bar
+   toggle opens it and mirrors the current section name so the operator
+   always has context. Runs after reorder-motion.js rebuilds the TOC;
+   listeners are bound to the persistent #toc / #nav-* containers.
+   ───────────────────────────────────────────────────────────────── */
+(function () {
+  const body = document.body;
+  const toggle = document.getElementById('nav-toggle');
+  const overlay = document.getElementById('nav-overlay');
+  const toc = document.getElementById('toc');
+  const label = document.getElementById('nt-label');
+  if (!toggle) return;
+
+  const open = () => { body.classList.add('nav-open'); toggle.setAttribute('aria-expanded', 'true'); };
+  const close = () => { body.classList.remove('nav-open'); toggle.setAttribute('aria-expanded', 'false'); };
+
+  toggle.addEventListener('click', () => body.classList.contains('nav-open') ? close() : open());
+  if (overlay) overlay.addEventListener('click', close);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+  if (toc) toc.addEventListener('click', e => { if (e.target.closest('a')) close(); });
+
+  // Mirror the active TOC entry into the toggle label for constant context.
+  if (toc && label) {
+    const sync = () => {
+      const a = toc.querySelector('a.active');
+      if (a) {
+        const t = a.querySelector('span:last-child');
+        if (t && t.textContent.trim()) label.textContent = t.textContent.trim();
+      }
+    };
+    new MutationObserver(sync).observe(toc, {
+      subtree: true, attributes: true, attributeFilter: ['class'], childList: true
+    });
+    sync();
+  }
+})();
+</script>
+</body>
+</html>
