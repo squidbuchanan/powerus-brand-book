@@ -1,0 +1,13 @@
+{
+  "name": "powerus-brand-book",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Powerus brand book static site",
+  "scripts": {
+    "dev": "serve site -l 3000",
+    "start": "serve site -l 3000"
+  },
+  "devDependencies": {
+    "serve": "^14.2.4"
+  }
+}
