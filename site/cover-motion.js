@@ -105,5 +105,11 @@
   cover.appendChild(rp);
 
   window.__playCover = play;
-  play(window.__coverDelay || 0);
+  // Hold the cover until the intro has really started on screen.
+  if (window.__introReady) {
+    cover.classList.add('cover-pre');
+    window.__introReady.then(() => play(window.__coverDelay || 0));
+  } else {
+    play(window.__coverDelay || 0);
+  }
 })();

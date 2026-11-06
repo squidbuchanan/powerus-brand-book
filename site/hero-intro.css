@@ -445,3 +445,11 @@ html.intro-on, html.intro-on body { overflow: hidden; }
 }
 .intro.s-blast .intro-mark { z-index: 4; }
 .intro.s-blast .intro-core { z-index: 4; }
+
+/* Hero headline — sized so "of autonomy." holds one line on phones/tablets */
+@media (max-width: 860px) {
+  .cover .word { font-size: min(120px, calc((100vw - 64px) * 0.165)); }
+}
+@media (max-width: 560px) {
+  .cover .word { font-size: calc((100vw - 36px) * 0.165); }
+}

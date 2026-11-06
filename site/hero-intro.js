@@ -45,7 +45,18 @@
     return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/>`;
   }).join('');
 
+  // Resolves when the first frame with real fonts is on screen (or 2.5s max).
+  const whenPainted = () => Promise.race([
+    Promise.all([
+      (document.fonts && document.fonts.ready) || Promise.resolve(),
+      new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)))
+    ]),
+    new Promise(r => setTimeout(r, 2500))
+  ]);
+
   function play() {
+  const ready = whenPainted();
+  window.__introReady = ready;
   const el = document.createElement('div');
   el.className = 'intro';
   el.setAttribute('aria-hidden', 'true');
@@ -112,22 +123,27 @@
   const add = (c) => el.classList.add(c);
 
   // ── Sequence ───────────────────────────────────────────────────────
-  requestAnimationFrame(() => add('s-boot'));
-  at(250, () => add('s-draw'));
-  el.querySelectorAll('.intro-log .ln').forEach((ln, i) => {
-    at(300 + i * 190, () => {
-      ln.classList.add('on');
-      resolve(ln.querySelector('.k'), 220);
-      setTimeout(() => { ln.classList.add('ok'); resolve(ln.querySelector('.v'), 160); }, 150);
+  // Start only once the page has actually painted (fonts in, two frames
+  // rendered) so slow mobile loads never run the timeline off-screen.
+  const start = () => {
+    requestAnimationFrame(() => add('s-boot'));
+    at(250, () => add('s-draw'));
+    el.querySelectorAll('.intro-log .ln').forEach((ln, i) => {
+      at(300 + i * 190, () => {
+        ln.classList.add('on');
+        resolve(ln.querySelector('.k'), 220);
+        setTimeout(() => { ln.classList.add('ok'); resolve(ln.querySelector('.v'), 160); }, 150);
+      });
     });
-  });
-  // Progress counter, stepped
-  const pct = el.querySelector('.intro-bar em');
-  for (let i = 1; i <= 12; i++) at(120 + i * 105, () => { pct.textContent = String(Math.round(i / 12 * 100)).padStart(3, '0') + '%'; });
-  at(1350, () => { add('s-lock'); el.querySelector('.intro-lock .txt').textContent = 'LOCK · POWERUS'; });
-  at(1650, () => add('s-scan'));
-  at(OPEN_AT, () => { add('s-open'); document.documentElement.classList.remove('intro-on'); });
-  at(DONE_AT, finish);
+    // Progress counter, stepped
+    const pct = el.querySelector('.intro-bar em');
+    for (let i = 1; i <= 12; i++) at(120 + i * 105, () => { pct.textContent = String(Math.round(i / 12 * 100)).padStart(3, '0') + '%'; });
+    at(1350, () => { add('s-lock'); el.querySelector('.intro-lock .txt').textContent = 'LOCK · POWERUS'; });
+    at(1650, () => add('s-scan'));
+    at(OPEN_AT, () => { add('s-open'); document.documentElement.classList.remove('intro-on'); });
+    at(DONE_AT, finish);
+  };
+  ready.then(start);
 
   let done = false;
   function finish() {
@@ -159,6 +175,6 @@
     if (document.querySelector('.intro')) return;
     window.scrollTo(0, 0);
     play();
-    if (window.__playCover) window.__playCover(COVER_AT);
+    window.__introReady.then(() => { if (window.__playCover) window.__playCover(COVER_AT); });
   };
 })();
