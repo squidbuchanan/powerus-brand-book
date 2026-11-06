@@ -1,0 +1,447 @@
+/* ============================================================
+   Hero intro — "system acquire" (hero-intro.js)
+   Char field, bone instruments, one ember signal.
+   ============================================================ */
+html.intro-on, html.intro-on body { overflow: hidden; }
+
+.intro {
+  --ease: cubic-bezier(.6, .05, .2, 1);
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  color: var(--bone);
+  font-family: var(--mono);
+  cursor: pointer;
+  overflow: hidden;
+}
+.intro-shutter {
+  position: absolute;
+  left: 0; right: 0;
+  height: 50.5%;
+  background: var(--char);
+  transition: transform 450ms var(--ease);
+}
+.intro-shutter.top { top: 0; }
+.intro-shutter.bot { bottom: 0; }
+.intro.s-open .intro-shutter.top { transform: translateY(-101%); }
+.intro.s-open .intro-shutter.bot { transform: translateY(101%); }
+
+.intro-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(245,241,232,0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(245,241,232,0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-position: center center;
+  opacity: 0;
+  transition: opacity 300ms steps(3, end);
+}
+.intro.s-boot .intro-grid { opacity: 1; }
+.intro.s-open .intro-grid,
+.intro.s-open .intro-hud,
+.intro.s-open .intro-log,
+.intro.s-open .intro-bar,
+.intro.s-open .intro-corners,
+.intro.s-open .intro-skip,
+.intro.s-open .intro-reticle,
+.intro.s-open .intro-lock { opacity: 0; transition: opacity 120ms linear; }
+
+/* Viewport corner brackets */
+.intro-corners i {
+  position: absolute;
+  width: 0; height: 0;
+  border-color: rgba(245,241,232,0.55);
+  border-style: solid;
+  border-width: 0;
+  transition: width 260ms steps(4, end), height 260ms steps(4, end);
+}
+.intro-corners i:nth-child(1) { top: 24px; left: 24px; border-top-width: 1px; border-left-width: 1px; }
+.intro-corners i:nth-child(2) { top: 24px; right: 24px; border-top-width: 1px; border-right-width: 1px; }
+.intro-corners i:nth-child(3) { bottom: 24px; right: 24px; border-bottom-width: 1px; border-right-width: 1px; }
+.intro-corners i:nth-child(4) { bottom: 24px; left: 24px; border-bottom-width: 1px; border-left-width: 1px; }
+.intro.s-boot .intro-corners i { width: 28px; height: 28px; }
+
+/* HUD text */
+.intro-hud {
+  position: absolute;
+  font-size: 10.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--dust);
+  line-height: 1.8;
+  opacity: 0;
+  transition: opacity 200ms steps(2, end) 120ms;
+}
+.intro.s-boot .intro-hud { opacity: 1; }
+.intro-hud b { font-weight: 500; color: var(--bone); }
+.intro-hud.tl { top: 40px; left: 64px; color: var(--bone); }
+.intro-hud.tr { top: 40px; right: 64px; text-align: right; }
+.intro-hud.br { bottom: 40px; right: 64px; text-align: right; color: var(--stone); }
+
+/* Boot log */
+.intro-log {
+  position: absolute;
+  left: 64px;
+  bottom: 88px;
+  width: min(420px, 40vw);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.intro-log .ln {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 10px;
+  align-items: baseline;
+  padding: 3px 0;
+  color: var(--dust);
+  visibility: hidden;
+}
+.intro-log .ln.on { visibility: visible; }
+.intro-log .dots { border-bottom: 1px dotted rgba(245,241,232,0.25); transform: translateY(-3px); }
+.intro-log .v { color: var(--stone); }
+.intro-log .ln.ok .v { color: var(--bone); }
+.intro-log .ln:last-child.ok .v { color: var(--ember); }
+
+/* Progress bar */
+.intro-bar {
+  position: absolute;
+  left: 64px; right: 64px;
+  bottom: 64px;
+  height: 1px;
+  background: rgba(245,241,232,0.14);
+  display: none;
+}
+.intro-bar span {
+  position: absolute;
+  inset: 0;
+  background: var(--bone);
+  transform-origin: left center;
+  transform: scaleX(0);
+}
+.intro.s-boot .intro-bar span { transform: scaleX(1); transition: transform 1260ms steps(12, end) 120ms; }
+.intro-bar em {
+  position: absolute;
+  right: 0; top: 10px;
+  font-style: normal;
+  font-size: 10.5px;
+  letter-spacing: 0.2em;
+  color: var(--bone);
+  font-variant-numeric: tabular-nums;
+}
+.intro-bar { display: block; }
+.intro-hud.br { bottom: 84px; }
+
+/* Center instrument */
+.intro-core {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: min(46vh, 420px);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+}
+.intro-reticle {
+  position: absolute;
+  inset: -12%;
+  width: 124%; height: 124%;
+  overflow: visible;
+  fill: none;
+  stroke: rgba(245,241,232,0.5);
+  stroke-width: 1;
+  transition: transform 300ms var(--ease);
+}
+.intro-reticle .ring circle {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 700ms linear 100ms;
+}
+.intro.s-boot .intro-reticle .ring circle { stroke-dashoffset: 0; }
+.intro-reticle .ticks {
+  opacity: 0;
+  transform-origin: 200px 200px;
+  transition: opacity 200ms steps(2, end) 300ms;
+}
+.intro.s-boot .intro-reticle .ticks { opacity: 0.6; animation: intro-spin 6s linear infinite; }
+.intro-reticle .arc circle {
+  stroke: var(--ember);
+  stroke-width: 1.5;
+  stroke-dasharray: 0.12 0.88;
+  stroke-dashoffset: 0;
+  transform-origin: 200px 200px;
+  opacity: 0;
+}
+.intro.s-boot .intro-reticle .arc circle { opacity: 1; animation: intro-spin 1.4s linear infinite reverse; }
+.intro.s-lock .intro-reticle .arc circle { animation: none; stroke-dasharray: 1 0; opacity: 0.9; transition: stroke-dasharray 200ms steps(4, end); }
+.intro-reticle .cross line { stroke: rgba(245,241,232,0.7); }
+.intro-reticle .cross {
+  transform-origin: 200px 200px;
+  transform: scale(1.35);
+  opacity: 0;
+  transition: transform 500ms var(--ease) 150ms, opacity 100ms linear 150ms;
+}
+.intro.s-boot .intro-reticle .cross { transform: scale(1); opacity: 1; }
+.intro-reticle .brackets polyline { stroke: var(--bone); stroke-width: 1.5; }
+.intro-reticle .brackets {
+  transform-origin: 200px 200px;
+  transform: scale(1.6);
+  opacity: 0;
+}
+.intro.s-boot .intro-reticle .brackets { opacity: 0.35; transform: scale(1.25); transition: transform 600ms var(--ease) 200ms, opacity 200ms linear 200ms; }
+.intro.s-lock .intro-reticle .brackets { opacity: 1; transform: scale(1); transition: transform 180ms steps(3, end), opacity 0s; }
+@keyframes intro-spin { to { transform: rotate(360deg); } }
+
+/* The monogram */
+.intro-mark {
+  position: absolute;
+  inset: 20%;
+  width: 60%; height: 60%;
+  overflow: visible;
+  transition: transform 450ms var(--ease), opacity 450ms var(--ease);
+}
+.intro-mark .stroke {
+  fill: none;
+  stroke: var(--bone);
+  stroke-width: 2.5;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+.intro.s-draw .intro-mark .stroke { stroke-dashoffset: 0; transition: stroke-dashoffset 1100ms linear; }
+.intro-mark .fill { fill: var(--bone); opacity: 0; }
+.intro.s-lock .intro-mark .fill { opacity: 1; transition: opacity 120ms steps(2, end); }
+.intro.s-lock .intro-mark { animation: intro-punch 260ms steps(3, end); }
+@keyframes intro-punch {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
+.intro.s-open .intro-mark { transform: scale(7); opacity: 0; }
+
+/* Lock readout */
+.intro-lock {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 14%);
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+  font-size: 10.5px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--dust);
+  opacity: 0;
+  transition: opacity 200ms steps(2, end) 400ms;
+}
+.intro.s-boot .intro-lock { opacity: 1; }
+.intro-lock .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--stone); }
+.intro.s-boot .intro-lock .dot { animation: intro-blink 360ms steps(1, end) infinite; }
+.intro.s-lock .intro-lock { color: var(--bone); }
+.intro.s-lock .intro-lock .dot { background: var(--ember); animation: pulse 1.2s ease-out infinite; }
+@keyframes intro-blink { 50% { opacity: 0; } }
+
+/* Ember scan */
+.intro-scan {
+  position: absolute;
+  left: 0; right: 0;
+  top: 0;
+  height: 1px;
+  background: var(--ember);
+  box-shadow: 0 0 0 1px rgba(255,98,0,0.15);
+  opacity: 0;
+  transform: translateY(-2px);
+}
+.intro.s-scan .intro-scan {
+  opacity: 1;
+  transform: translateY(100vh);
+  transition: transform 300ms linear, opacity 0s;
+}
+.intro.s-open .intro-scan { opacity: 0; }
+
+/* Skip */
+.intro-skip {
+  position: absolute;
+  top: 34px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: transparent;
+  border: 1px solid rgba(245,241,232,0.25);
+  border-radius: 999px;
+  color: var(--stone);
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 200ms linear 500ms, color 120ms ease, border-color 120ms ease;
+}
+.intro.s-boot .intro-skip { opacity: 1; }
+.intro-skip:hover { color: var(--bone); border-color: var(--bone); }
+
+/* ============================================================
+   Cover — post-intro reveal
+   ============================================================ */
+.cover.cover-pre .top-block,
+.cover.cover-pre .bottom { opacity: 0; }
+.cover.cover-pre .word { opacity: 0; transform: scale(1.04); }
+.cover.cover-in .top-block,
+.cover.cover-in .bottom { opacity: 1; transition: opacity 240ms steps(3, end); }
+.cover.cover-in .bottom { transition-delay: 300ms; }
+.cover.cover-in .word { opacity: 1; transform: none; transition: transform 700ms cubic-bezier(.6, .05, .2, 1), opacity 120ms linear; }
+.cover .word { transform-origin: left center; align-self: flex-start; }
+
+/* Tracking rule + brackets on the headline */
+.cover-fx { position: absolute; inset: -0.12em -0.18em -0.16em -0.18em; pointer-events: none; z-index: 2; }
+.cover-fx .rule {
+  position: absolute;
+  left: 0; right: 0;
+  top: 50%;
+  height: 2px;
+  background: var(--ember);
+  transform-origin: left center;
+  transform: scaleX(0);
+  opacity: 0;
+}
+.cover .word.fx-on .cover-fx .rule {
+  opacity: 1;
+  transform: scaleX(1);
+  transition: transform 380ms cubic-bezier(.6, .05, .2, 1);
+}
+.cover .word.fx-lock .cover-fx .rule {
+  opacity: 0;
+  transform: scaleX(1) translateY(0.9em);
+  transition: opacity 160ms steps(2, end) 120ms, transform 200ms steps(3, end);
+}
+.cover-fx i {
+  position: absolute;
+  width: 0.14em; height: 0.14em;
+  border: 0 solid var(--char);
+  opacity: 0;
+  transform: scale(1.4);
+}
+.cover-fx i:nth-of-type(1) { top: 0; left: 0; border-top-width: 2px; border-left-width: 2px; transform-origin: top left; }
+.cover-fx i:nth-of-type(2) { top: 0; right: 0; border-top-width: 2px; border-right-width: 2px; transform-origin: top right; }
+.cover-fx i:nth-of-type(3) { bottom: 0; right: 0; border-bottom-width: 2px; border-right-width: 2px; transform-origin: bottom right; }
+.cover-fx i:nth-of-type(4) { bottom: 0; left: 0; border-bottom-width: 2px; border-left-width: 2px; transform-origin: bottom left; }
+.cover .word.fx-on .cover-fx i { opacity: 0.35; transform: scale(1); transition: transform 300ms steps(3, end), opacity 0s; }
+.cover .word.fx-lock .cover-fx i { opacity: 1; }
+.cover-fx .tag {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: var(--graphite);
+  white-space: nowrap;
+  opacity: 0;
+  line-height: 1;
+}
+.cover-fx .tag::before {
+  content: "";
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--ember);
+  margin-right: 8px;
+  vertical-align: 1px;
+}
+.cover .word.fx-lock .cover-fx .tag { opacity: 1; transition: opacity 0s 160ms; }
+
+/* Replay */
+.cover-replay {
+  position: absolute;
+  right: var(--pad);
+  bottom: 20px;
+  background: transparent;
+  border: 0;
+  padding: 4px 0;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--stone);
+  cursor: pointer;
+  transition: color 120ms ease;
+}
+.cover-replay span { font-family: var(--sans); letter-spacing: 0; margin-right: 4px; }
+.cover-replay:hover { color: var(--ember); }
+
+@media (max-width: 700px) {
+  .intro-hud.tr, .intro-hud.br { display: none; }
+  .intro-hud.tl { left: 24px; top: 64px; font-size: 9px; }
+  .intro-log { left: 24px; width: calc(100vw - 48px); bottom: 96px; font-size: 9px; }
+  .intro-bar { left: 24px; right: 24px; }
+  .intro-core { width: min(62vw, 300px); top: 42%; }
+  .cover-fx .tag { display: none; }
+  .cover-replay { bottom: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro { display: none; }
+}
+
+/* Lock marks are transient — they clear after the hold */
+.cover .word.fx-clear .cover-fx i,
+.cover .word.fx-clear .cover-fx .tag { opacity: 0; transition: opacity 240ms steps(3, end); }
+
+/* ============================================================
+   Detonation (replaces the shutter split)
+   ============================================================ */
+.intro.s-blast .intro-shutter { display: none; }
+.intro-shards {
+  position: absolute;
+  inset: 0;
+  perspective: 900px;
+  perspective-origin: 50% 50%;
+  pointer-events: none;
+}
+.intro-shards i {
+  position: absolute;
+  display: block;
+  background-color: var(--char);
+  background-image:
+    linear-gradient(to right, rgba(245,241,232,0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(245,241,232,0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+  box-shadow: inset 0 0 0 1px rgba(245,241,232,0.10);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+/* Core flash — a hard bone pop at the monogram */
+.intro-flash {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 46vh; height: 46vh;
+  margin: -23vh 0 0 -23vh;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(253,250,243,0.95) 0%, rgba(253,250,243,0.5) 30%, rgba(253,250,243,0) 70%);
+  pointer-events: none;
+  animation: intro-flash 420ms cubic-bezier(.1,.8,.2,1) forwards;
+  z-index: 3;
+}
+@keyframes intro-flash {
+  0%   { transform: scale(0.2); opacity: 0; }
+  15%  { transform: scale(1); opacity: 1; }
+  100% { transform: scale(3.2); opacity: 0; }
+}
+/* Shockwave ring */
+.intro-wave {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 40vh; height: 40vh;
+  margin: -20vh 0 0 -20vh;
+  border-radius: 50%;
+  border: 2px solid var(--bone);
+  pointer-events: none;
+  animation: intro-wave 620ms cubic-bezier(.15,.7,.3,1) forwards;
+  z-index: 3;
+}
+@keyframes intro-wave {
+  0%   { transform: scale(0.3); opacity: 1; border-width: 6px; }
+  100% { transform: scale(6); opacity: 0; border-width: 1px; }
+}
+.intro.s-blast .intro-mark { z-index: 4; }
+.intro.s-blast .intro-core { z-index: 4; }

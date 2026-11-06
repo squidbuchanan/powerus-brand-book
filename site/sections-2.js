@@ -993,62 +993,25 @@ add(`
     <div class="meta"><span class="num" style="color:var(--ember)">20 / Application</span>Asset<br/>Library<br/><span style="color:var(--stone)">Take what you need.</span></div>
     <div>
       <h2>Take it.<br/>Use it right.</h2>
-      <p class="lede">Logos, icons, certifications, photography, references, and tokens — pulled directly from this document. Every file is the canonical version. If a partner or vendor needs something, send them this page; if they need more, they don't have it for a reason.</p>
+      <p class="lede">Logos, icons, certifications, and tokens — pulled directly from this document. Product photography and cutouts live in the Image Bank. Every file is the canonical version. If a partner or vendor needs something, send them this page; if they need more, they don't have it for a reason.</p>
     </div>
   </div>
 
   <div class="dl-summary">
-    <div><span class="num" style="color:var(--ember)">01</span><span class="count">5</span><span class="label">Logos</span></div>
-    <div><span class="num" style="color:var(--ember)">02</span><span class="count">3</span><span class="label">Icons / Mark</span></div>
-    <div><span class="num" style="color:var(--ember)">03</span><span class="count">3</span><span class="label">Certifications</span></div>
-    <div><span class="num" style="color:var(--ember)">04</span><span class="count">12</span><span class="label">Photography</span></div>
-    <div><span class="num" style="color:var(--ember)">05</span><span class="count">3</span><span class="label">References</span></div>
-    <div><span class="num" style="color:var(--ember)">06</span><span class="count">2</span><span class="label">Tokens</span></div>
+    <div><span class="num" style="color:var(--ember)">01</span><span class="count">12</span><span class="label">Logo files</span></div>
+    <div><span class="num" style="color:var(--ember)">02</span><span class="count">3</span><span class="label">Certifications</span></div>
+    <div><span class="num" style="color:var(--ember)">03</span><span class="count">2</span><span class="label">Tokens</span></div>
   </div>
+  <a class="ib-jump" href="#image-bank"><span>Product photography &amp; cutouts · 59 files</span><span>Go to Image Bank →</span></a>
 
   <!-- 20.1 LOGOS -->
   <div class="dl-group">
     <div class="dl-group-head">
-      <h3><span class="num" style="color:var(--ember)">20.1</span>Logos · primary lockups</h3>
-      <button class="dl-grab-all" data-grab-group="logos">GRAB ALL · LOGOS</button>
+      <h3><span class="num" style="color:var(--ember)">20.1</span>Logos · full logo &amp; icon</h3>
+      <button class="dl-grab-all" data-lk-grab="1">GRAB ALL · LOGOS</button>
     </div>
-    <div class="dl-rows" data-group="logos">
-      <div class="dl-row">
-        <span class="idx">01</span>
-        <span class="thumb"><img src="assets/logo/powerus-lockup-charcoal.png" alt=""/></span>
-        <span class="name">Powerus lockup · Char<span class="file">powerus-lockup-charcoal.png</span></span>
-        <span class="fmt">PNG · RGB</span><span class="dims">1711 × 387</span><span class="wt">37 KB</span>
-        <a class="dl-cta" href="assets/logo/powerus-lockup-charcoal.png" download="powerus-lockup-charcoal.png">Download</a>
-      </div>
-      <div class="dl-row">
-        <span class="idx">02</span>
-        <span class="thumb dark"><img src="assets/logo/powerus-lockup-bone.png" alt=""/></span>
-        <span class="name">Powerus lockup · Bone<span class="file">powerus-lockup-bone.png</span></span>
-        <span class="fmt">PNG · RGB</span><span class="dims">1711 × 387</span><span class="wt">34 KB</span>
-        <a class="dl-cta" href="assets/logo/powerus-lockup-bone.png" download="powerus-lockup-bone.png">Download</a>
-      </div>
-      <div class="dl-row">
-        <span class="idx">03</span>
-        <span class="thumb"><img src="assets/logo/icon-dark.svg" alt=""/></span>
-        <span class="name">Monogram icon · Dark<span class="file">icon-dark.svg</span></span>
-        <span class="fmt">SVG · vector</span><span class="dims">scalable</span><span class="wt">2.3 KB</span>
-        <a class="dl-cta" href="assets/logo/icon-dark.svg" download="powerus-icon-dark.svg">Download</a>
-      </div>
-      <div class="dl-row">
-        <span class="idx">04</span>
-        <span class="thumb dark"><img src="assets/logo/icon-light.svg" alt=""/></span>
-        <span class="name">Monogram icon · Light<span class="file">icon-light.svg</span></span>
-        <span class="fmt">SVG · vector</span><span class="dims">scalable</span><span class="wt">2.3 KB</span>
-        <a class="dl-cta" href="assets/logo/icon-light.svg" download="powerus-icon-light.svg">Download</a>
-      </div>
-      <div class="dl-row">
-        <span class="idx">05</span>
-        <span class="thumb"><img src="assets/logo/icon-mark.svg" alt=""/></span>
-        <span class="name">Monogram · Stroke / Master<span class="file">icon-mark.svg</span></span>
-        <span class="fmt">SVG · vector</span><span class="dims">scalable</span><span class="wt">2.3 KB</span>
-        <a class="dl-cta" href="assets/logo/icon-mark.svg" download="powerus-icon-mark.svg">Download</a>
-      </div>
-    </div>
+    <p class="ib-intro">Every mark in vector and raster. SVG for print and web, large PNG (2×) for decks and video, small PNG for email, docs, and avatars. Char on light surfaces, bone on dark.</p>
+    <div id="lk-root"></div>
   </div>
 
   <!-- 20.2 CERTIFICATIONS -->
@@ -1082,135 +1045,10 @@ add(`
     </div>
   </div>
 
-  <!-- 20.3 PHOTOGRAPHY -->
-  <div class="dl-group">
-    <div class="dl-group-head">
-      <h3><span class="num" style="color:var(--ember)">20.3</span>Photography · approved library</h3>
-      <button class="dl-grab-all" data-grab-group="photos">GRAB ALL · PHOTOS</button>
-    </div>
-    <div class="dl-rows" data-group="photos">
-      <div class="dl-row">
-        <span class="idx">01</span>
-        <span class="thumb photo" style="background-image:url('assets/photo/defense-hero.png')"></span>
-        <span class="name">Defense · hero<span class="file">defense-hero.png</span></span>
-        <span class="fmt">PNG · RGB</span><span class="dims">1832 × 1136</span><span class="wt">1.9 MB</span>
-        <a class="dl-cta" href="assets/photo/defense-hero.png" download="powerus-defense-hero.png">Download</a>
-      </div>
-      <div class="dl-row">
-        <span class="idx">02</span>
-        <span class="thumb photo" style="background-image:url('assets/photo/fire-hero.png')"></span>
-        <span class="name">Wildfire · hero<span class="file">fire-hero.png</span></span>
-        <span class="fmt">PNG · RGB</span><span class="dims">1456 × 816</span><span class="wt">1.2 MB</span>
-        <a class="dl-cta" href="assets/photo/fire-hero.png" download="powerus-fire-hero.png">Download</a>
-      </div>
-      <div class="dl-row">
-        <span class="idx">03</span>
-        <span class="thumb photo" style="background-image:url('assets/photo/agriculture-hero.png')"></span>
-        <span class="name">Agriculture · hero<span class="file">agriculture-hero.png</span></span>
-        <span class="fmt">PNG · RGB</span><span class="dims">1456 × 816</span><span class="wt">1.8 MB</span>
-        <a class="dl-cta" href="assets/photo/agriculture-hero.png" download="powerus-agriculture-hero.png">Download</a>
-      </div>
-      <div class="dl-row">
-        <span class="idx">04</span>
-        <span class="thumb photo" style="background-image:url('assets/photo/logistics-hero.jpg')"></span>
-        <span class="name">Logistics · hero<span class="file">logistics-hero.jpg</span></span>
-        <span class="fmt">JPG · RGB</span><span class="dims">913 × 648</span><span class="wt">137 KB</span>
-        <a class="dl-cta" href="assets/photo/logistics-hero.jpg" download="powerus-logistics-hero.jpg">Download</a>
-      </div>
-      <div class="dl-row">
-        <span class="idx">05</span>
-        <span class="thumb photo" style="background-image:url('assets/photo/search-rescue-hero.png')"></span>
-        <span class="name">Search &amp; rescue · hero<span class="file">search-rescue-hero.png</span></span>
-        <span class="fmt">PNG · RGB</span><span class="dims">1456 × 816</span><span class="wt">1.4 MB</span>
-        <a class="dl-cta" href="assets/photo/search-rescue-hero.png" download="powerus-search-rescue-hero.png">Download</a>
-      </div>
-      <div class="dl-row">
-        <span class="idx">06</span>
-        <span class="thumb photo" style="background-image:url('assets/photo/guardian-hero.png')"></span>
-        <span class="name">Guardian-1 · platform<span class="file">guardian-hero.png</span></span>
-        <span class="fmt">PNG · RGB</span><span class="dims">1190 × 933</span><span class="wt">1.2 MB</span>
-        <a class="dl-cta" href="assets/photo/guardian-hero.png" download="powerus-guardian-hero.png">Download</a>
-      </div>
-      <div class="dl-row">
-        <span class="idx">07</span>
-        <span class="thumb photo" style="background-image:url('assets/photo/xfold-spy.png')"></span>
-        <span class="name">xFold Spy · platform<span class="file">xfold-spy.png</span></span>
-        <span class="fmt">PNG · RGB</span><span class="dims">1279 × 857</span><span class="wt">1.0 MB</span>
-        <a class="dl-cta" href="assets/photo/xfold-spy.png" download="powerus-xfold-spy.png">Download</a>
-      </div>
-      <div class="dl-row">
-        <span class="idx">08</span>
-        <span class="thumb photo" style="background-image:url('assets/photo/kaizen-drone.png')"></span>
-        <span class="name">Kaizen-HL · platform<span class="file">kaizen-drone.png</span></span>
-        <span class="fmt">PNG · RGB</span><span class="dims">1161 × 1080</span><span class="wt">1.1 MB</span>
-        <a class="dl-cta" href="assets/photo/kaizen-drone.png" download="powerus-kaizen-drone.png">Download</a>
-      </div>
-      <div class="dl-row">
-        <span class="idx">09</span>
-        <span class="thumb photo" style="background-image:url('assets/photo/fpv-desert.png')"></span>
-        <span class="name">FPV · desert / kinetic<span class="file">fpv-desert.png</span></span>
-        <span class="fmt">PNG · RGB</span><span class="dims">946 × 971</span><span class="wt">1.3 MB</span>
-        <a class="dl-cta" href="assets/photo/fpv-desert.png" download="powerus-fpv-desert.png">Download</a>
-      </div>
-      <div class="dl-row">
-        <span class="idx">10</span>
-        <span class="thumb photo" style="background-image:url('assets/photo/fpv-platforms.jpg')"></span>
-        <span class="name">FPV · platform array<span class="file">fpv-platforms.jpg</span></span>
-        <span class="fmt">JPG · RGB</span><span class="dims">1392 × 768</span><span class="wt">175 KB</span>
-        <a class="dl-cta" href="assets/photo/fpv-platforms.jpg" download="powerus-fpv-platforms.jpg">Download</a>
-      </div>
-      <div class="dl-row">
-        <span class="idx">11</span>
-        <span class="thumb photo" style="background-image:url('assets/photo/tactical-fpv.jpg')"></span>
-        <span class="name">Tactical · FPV in context<span class="file">tactical-fpv.jpg</span></span>
-        <span class="fmt">JPG · RGB</span><span class="dims">6230 × 4209</span><span class="wt">1.4 MB</span>
-        <a class="dl-cta" href="assets/photo/tactical-fpv.jpg" download="powerus-tactical-fpv.jpg">Download</a>
-      </div>
-      <div class="dl-row">
-        <span class="idx">12</span>
-        <span class="thumb photo" style="background-image:url('assets/photo/heavy-lift.jpg')"></span>
-        <span class="name">Heavy lift · sling<span class="file">heavy-lift.jpg</span></span>
-        <span class="fmt">JPG · RGB</span><span class="dims">1920 × 1080</span><span class="wt">611 KB</span>
-        <a class="dl-cta" href="assets/photo/heavy-lift.jpg" download="powerus-heavy-lift.jpg">Download</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- 20.4 REFS -->
-  <div class="dl-group">
-    <div class="dl-group-head">
-      <h3><span class="num" style="color:var(--ember)">20.4</span>Reference slicks</h3>
-      <button class="dl-grab-all" data-grab-group="refs">GRAB ALL · REFS</button>
-    </div>
-    <div class="dl-rows" data-group="refs">
-      <div class="dl-row">
-        <span class="idx">01</span>
-        <span class="thumb photo" style="background-image:url('assets/refs/slick-matrix-12.png'); background-size:contain; background-repeat:no-repeat;"></span>
-        <span class="name">Slick · Matrix-12<span class="file">slick-matrix-12.png</span></span>
-        <span class="fmt">PNG · RGB</span><span class="dims">1518 × 2149</span><span class="wt">922 KB</span>
-        <a class="dl-cta" href="assets/refs/slick-matrix-12.png" download="powerus-slick-matrix-12.png">Download</a>
-      </div>
-      <div class="dl-row">
-        <span class="idx">02</span>
-        <span class="thumb photo" style="background-image:url('assets/refs/slick-guardian.png'); background-size:contain; background-repeat:no-repeat;"></span>
-        <span class="name">Slick · Guardian-1<span class="file">slick-guardian.png</span></span>
-        <span class="fmt">PNG · RGB</span><span class="dims">1518 × 2149</span><span class="wt">1.4 MB</span>
-        <a class="dl-cta" href="assets/refs/slick-guardian.png" download="powerus-slick-guardian.png">Download</a>
-      </div>
-      <div class="dl-row">
-        <span class="idx">03</span>
-        <span class="thumb photo" style="background-image:url('assets/refs/slick-xfold.png'); background-size:contain; background-repeat:no-repeat;"></span>
-        <span class="name">Slick · xFold Spy<span class="file">slick-xfold.png</span></span>
-        <span class="fmt">PNG · RGB</span><span class="dims">1518 × 2149</span><span class="wt">1.2 MB</span>
-        <a class="dl-cta" href="assets/refs/slick-xfold.png" download="powerus-slick-xfold.png">Download</a>
-      </div>
-    </div>
-  </div>
-
   <!-- 20.5 TOKENS -->
   <div class="dl-group">
     <div class="dl-group-head">
-      <h3><span class="num" style="color:var(--ember)">20.5</span>Tokens · color &amp; type</h3>
+      <h3><span class="num" style="color:var(--ember)">20.3</span>Tokens · color &amp; type</h3>
       <span class="mono mono-sm" style="color:var(--stone);">GENERATED ON DEMAND</span>
     </div>
     <div class="dl-rows" data-group="tokens">
@@ -1272,7 +1110,7 @@ add(`
     <div class="col-2 colophon">
       <div>
         <div class="mono">[ COLOPHON ]</div>
-        <p style="margin-top:12px;">Powerus Brand Operating System V2.0. Issued July 2026 by the Powerus Brand Office. Set in Manrope and JetBrains Mono. This document is internal and is updated quarterly. Questions, exceptions, and revision requests: <span style="font-family:var(--mono); letter-spacing:0.16em;">squid@power.us</span>.</p>
+        <p style="margin-top:12px;">Powerus Brand Operating System V2.0. Issued November 2026 by the Powerus Brand Office. Set in Manrope and JetBrains Mono. This document is internal and is updated quarterly. Questions, exceptions, and revision requests: <span style="font-family:var(--mono); letter-spacing:0.16em;">squid@power.us</span>.</p>
       </div>
       <div style="text-align:right;">
         <div class="mono">END / BBL_001</div>
@@ -1285,3 +1123,23 @@ add(`
 
 // Render TOC at the end
 window.renderTOC();
+
+// ─────────────────────────────────────────────────────────────────────
+// IMAGE BANK — product photography + cutouts (opens the Photography group;
+// position and numbering set by reorder-motion.js, grid filled by asset-bank.js)
+// ─────────────────────────────────────────────────────────────────────
+reg('image-bank', 'Image Bank');
+add(`
+<section id="image-bank" class="page">
+  <span class="page-num">PG <span>16</span><span class="of">/</span>24</span>
+  <div class="section-head">
+    <div class="meta"><span class="num" style="color:var(--ember)">16 / Photography</span>Image<br/>Bank<br/><span style="color:var(--stone)">By product.</span></div>
+    <div>
+      <h2>Every product.<br/>Ready to use.</h2>
+      <p class="lede">Approved photography and transparent cutouts for every Powerus product, synced from the design system. Filter by product or type, click any frame to download the full-resolution file, or grab a whole product at once.</p>
+    </div>
+  </div>
+  <p class="ib-intro">Cutouts sit on bone, char, or a texture — never add a drop shadow or a colored outline. Photography follows the grade and shot-list rules on the pages that follow.</p>
+  <div id="ib-root"></div>
+</section>
+`);
