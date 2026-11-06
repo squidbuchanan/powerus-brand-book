@@ -1,5 +1,5 @@
 /* ─────────────────────────────────────────────────────────────────
-   reorder-motion.js — promotes Motion above Photography
+   reorder-motion.js — section order (Imagery after Foundation, Nov 2026)
    Runs AFTER sections-3.js. Source of truth for all numbering.
 
    New DOM order:
@@ -16,10 +16,10 @@
 (function () {
   const order = [
     'cover','index','manifesto','mission','divisions','origin',
+    'image-bank','social','shot-lists','grade',
     'voice','logo','monogram','clearspace',
     'color','typography','grid','icons',
     'motion','motion-graphics',
-    'shot-lists','grade',
     'video-principles','video-templates','video-library',
     'components','downloads','collateral'
   ];
@@ -27,12 +27,12 @@
   // Group label per section index (for "NN / Group" prefix)
   const groupOf = {
     0:'Foundation',1:'Index',2:'Foundation',3:'Foundation',4:'Foundation',5:'Foundation',
-    6:'Identity',7:'Identity',8:'Identity',9:'Identity',
-    10:'System',11:'System',12:'System',13:'System',
-    14:'Motion',15:'Motion',
-    16:'Photography',17:'Photography',
-    18:'Video',19:'Video',20:'Video',
-    21:'Application',22:'Application',23:'Application'
+    6:'Imagery',7:'Imagery',8:'Imagery',9:'Imagery',
+    10:'Identity',11:'Identity',12:'Identity',13:'Identity',
+    14:'System',15:'System',16:'System',17:'System',
+    18:'Motion',19:'Motion',
+    20:'Video',21:'Video',22:'Video',
+    23:'Application',24:'Application',25:'Application'
   };
 
   const main = document.getElementById('main');
@@ -87,17 +87,25 @@
   // and Motion Graphics (was 19.x → now 14.x), and Photo/Video/App
   // sub-IDs that were originally numbered against their old chapter.
   const subRemap = [
-    // [section id, oldChapter, newChapter]
-    ['motion',           18, 14],
-    ['motion-graphics',  19, 15],
-    ['shot-lists',       14, 16],
-    ['grade',            15, 17],
-    ['video-principles', 16, 18],
-    ['video-templates',  17, 19],
-    ['video-library',    21, 20],
-    ['components',       18, 21], // sections-2.js wrote "18.1/Buttons" etc.
-    ['downloads',        20, 22],
-    ['collateral',       21, 23]
+    // [section id, chapter as written in source (after sections-3.js), new chapter]
+    ['shot-lists',       13, 8],
+    ['grade',            14, 9],
+    ['voice',          '04', 10],
+    ['logo',           '05', 11],
+    ['monogram',       '06', 12],
+    ['clearspace',     '07', 13],
+    ['color',          '08', 14],
+    ['typography',     '09', 15],
+    ['grid',             10, 16],
+    ['icons',            11, 17],
+    ['motion',           18, 18],
+    ['motion-graphics',  19, 19],
+    ['video-principles', 15, 20],
+    ['video-templates',  17, 21],
+    ['video-library',    21, 22],
+    ['components',       18, 23], // sections-2.js wrote "18.1/Buttons" etc.
+    ['downloads',        21, 24], // sections-3.js already moved 20.x → 21.x
+    ['collateral',       22, 25]  // sections-3.js already moved 21.x → 22.x
   ];
   subRemap.forEach(([id, oldN, newN]) => {
     const sec = document.getElementById(id);
@@ -115,7 +123,7 @@
   // 4) Body text references — "Motion 18" → "Motion 13" ───────────
   document.querySelectorAll('p, span, div').forEach(el => {
     if (el.children.length === 0 && /Motion 18\b/.test(el.textContent)) {
-      el.textContent = el.textContent.replace(/Motion 18\b/g, 'Motion 14');
+      el.textContent = el.textContent.replace(/Motion 18\b/g, 'Motion 18');
     }
   });
 
@@ -132,12 +140,12 @@
     if (tocEl) {
       const newGroups = [
         { name: 'Foundation', range: [0, 5] },
-        { name: 'Identity',   range: [6, 9] },
-        { name: 'System',     range: [10, 13] },
-        { name: 'Motion',     range: [14, 15] },
-        { name: 'Photography',range: [16, 17] },
-        { name: 'Video',      range: [18, 20] },
-        { name: 'Application',range: [21, 23] }
+        { name: 'Imagery',    range: [6, 9] },
+        { name: 'Identity',   range: [10, 13] },
+        { name: 'System',     range: [14, 17] },
+        { name: 'Motion',     range: [18, 19] },
+        { name: 'Video',      range: [20, 22] },
+        { name: 'Application',range: [23, 25] }
       ];
       let html = '';
       newGroups.forEach(g => {
@@ -193,23 +201,25 @@
       'Motion': 'Motion Principles',
       'Motion Graphics': 'Motion Graphics',
       'Photo Principles': 'Photography Principles',
+      'Image Bank': 'Image Bank',
       'Shot Lists': 'Photography Shot Lists',
       'Photo Grade': 'Photo Grade &amp; LUT',
       'Video Principles': 'Video Principles',
       'Video Templates': 'Video Templates',
       'Video Library': 'Video Library',
       'Web Components': 'Web &amp; Component Patterns',
+      'Social': 'Social System',
       'Downloads': 'Asset Library',
       'Collateral': 'Collateral &amp; Merch'
     };
     const groups = [
       { name: 'Foundation', range: [2, 5] },   // skip cover/index from listing
-      { name: 'Identity',   range: [6, 9] },
-      { name: 'System',     range: [10, 13] },
-      { name: 'Motion',     range: [14, 15] },
-      { name: 'Photography',range: [16, 17] },
-      { name: 'Video',      range: [18, 20] },
-      { name: 'Application',range: [21, 23] }
+      { name: 'Imagery',    range: [6, 9] },
+      { name: 'Identity',   range: [10, 13] },
+      { name: 'System',     range: [14, 17] },
+      { name: 'Motion',     range: [18, 19] },
+      { name: 'Video',      range: [20, 22] },
+      { name: 'Application',range: [23, 25] }
     ];
     // Two columns: split groups roughly down the middle (Foundation→System | Motion→Application)
     const colA = groups.slice(0, 3);
@@ -238,7 +248,7 @@
     const indexHead = document.querySelector('#index .section-head .meta');
     if (indexHead) {
       indexHead.innerHTML = indexHead.innerHTML.replace(
-        /\d+\s+chapters/i, '22 chapters'
+        /\d+\s+chapters/i, '24 chapters'
       );
     }
   }

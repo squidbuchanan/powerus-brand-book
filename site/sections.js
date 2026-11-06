@@ -16,7 +16,7 @@ add(`
   <div class="top-block">
     <div>
       <div class="mono mono-md" style="margin-bottom:18px;">[ POWERUS // BRAND OPERATING SYSTEM ]</div>
-      <div style="font-family:var(--sans); font-weight:600; font-size:10.5px; letter-spacing:0.22em; text-transform:uppercase; color:var(--graphite);">Internal Reference · V2.0 · July 2026</div>
+      <div style="font-family:var(--sans); font-weight:600; font-size:10.5px; letter-spacing:0.22em; text-transform:uppercase; color:var(--graphite);">Internal Reference · V2.0 · November 2026</div>
     </div>
     <div style="display:flex; align-items:flex-end; gap:32px;">
       <div class="meta" style="line-height:1.9; text-align:right;">
@@ -27,7 +27,7 @@ add(`
     </div>
   </div>
 
-  <div class="word" style="letter-spacing: -4.6px; line-height: 0.9;" data-headline>
+  <div class="word" style="letter-spacing: -0.05em; line-height: 0.9;" data-headline>
     <span class="line"><span class="line-ink">Powering</span><span class="redact" aria-hidden="true"></span></span><br/>
     <span class="line"><span class="line-ink">the future</span><span class="redact" aria-hidden="true"></span></span><br/>
     <span class="line"><span class="line-ink">of autonomy<span class="em">.</span></span><span class="redact" aria-hidden="true"></span></span>
@@ -40,7 +40,7 @@ add(`
     </div>
     <div>
       <div class="stat-k">Version</div>
-      <div class="stat-v">2.0 · JUL 2026</div>
+      <div class="stat-v">2.0 · NOV 2026</div>
     </div>
     <div>
       <div class="stat-k">Custodian</div>
@@ -126,8 +126,8 @@ add(`
     </div>
     <div class="axiom">
       <div class="num">003</div>
-      <div class="head">Hardware is destiny.</div>
-      <div class="body">Software companies acquire hardware companies and forget how to build atoms. We are a hardware company. The atoms come first; the bits enable them.</div>
+      <div class="head">The system is the product.</div>
+      <div class="body">Airframe, autonomy, and the software that connects sensor to effector are built as one. None of it ships alone. We design the atoms and the code together, test them together, and field them together.</div>
     </div>
     <div class="axiom">
       <div class="num">004</div>
@@ -388,8 +388,8 @@ add(`
   <div style="margin-top: 64px;">
     <h3 style="color: var(--dust)"><span class="num" style="color:var(--ember)">04.4</span> Footprint</h3>
     <div style="margin-top: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: baseline;">
-      <div style="font-family: var(--display); font-size: clamp(28px, 3.2vw, 44px); font-weight: 400; letter-spacing: -0.02em; line-height: 1.1; color: var(--bone);">Manufactured in<br/><span style="color: var(--ember);">Charlotte, North Carolina.</span></div>
-      <p style="color: var(--dust); font-size: 14px; line-height: 1.6; max-width: 52ch; padding-top: 8px;">Every Powerus serial number traces back through a U.S. supply chain to a final-assembly line in Charlotte. The provenance is auditable, end to end.</p>
+      <div style="font-family: var(--display); font-size: clamp(28px, 3.2vw, 44px); font-weight: 400; letter-spacing: -0.02em; line-height: 1.1; color: var(--bone);">Manufactured in<br/><span style="color: var(--ember);">Rock Hill, South Carolina.</span></div>
+      <p style="color: var(--dust); font-size: 14px; line-height: 1.6; max-width: 52ch; padding-top: 8px;">Every Powerus serial number traces back through a U.S. supply chain to a final-assembly line in Rock Hill. The provenance is auditable, end to end.</p>
     </div>
   </div>
 

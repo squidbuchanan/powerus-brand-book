@@ -1,0 +1,125 @@
+/* ============================================================
+   Social System (social.js)
+   ============================================================ */
+.sp-rules {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid var(--char);
+  border-bottom: 1px solid var(--hairline);
+  margin-bottom: 24px;
+}
+.sp-rules > div {
+  padding: 16px 18px 18px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.sp-rules > div + div { padding-left: 18px; border-left: 1px solid var(--hairline); }
+.sp-rules .k {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ember);
+}
+.sp-rules .v { font-size: 14px; line-height: 1.45; color: var(--char); }
+
+.sp-series { padding-top: 40px; }
+.sp-series .ib-phead { margin-bottom: 12px; }
+.sp-rule {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--graphite);
+  max-width: 76ch;
+  margin: 0 0 20px;
+}
+.sp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+.sp-post {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1080 / 1350;
+  padding: 0;
+  margin: 0;
+  border: 1px solid var(--hairline);
+  background: var(--char);
+  overflow: hidden;
+  cursor: zoom-in;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+}
+.sp-post::after {
+  content: "View ↗";
+  position: absolute;
+  right: 0; bottom: 0;
+  padding: 7px 10px;
+  background: var(--char);
+  color: var(--bone);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 120ms ease, background 120ms ease;
+}
+.sp-post:hover::after, .sp-post:focus-visible::after { opacity: 1; background: var(--ember); }
+.sp-canvas {
+  position: absolute;
+  left: 0; top: 0;
+  width: 1080px;
+  height: 1350px;
+  transform-origin: 0 0;
+  pointer-events: none;
+  display: block;
+}
+
+/* Full-size viewer */
+html.sp-lock, html.sp-lock body { overflow: hidden; }
+.sp-view {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  background: rgba(22, 22, 22, 0.94);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sp-view[hidden] { display: none; }
+.sp-stage {
+  position: relative;
+  height: min(88vh, 1350px);
+  aspect-ratio: 1080 / 1350;
+  max-width: 92vw;
+  overflow: hidden;
+}
+.sp-close {
+  position: absolute;
+  top: 56px; right: 24px;
+  background: transparent;
+  border: 1px solid rgba(245,241,232,0.35);
+  border-radius: 999px;
+  color: var(--bone);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 8px 14px;
+  cursor: pointer;
+}
+.sp-close:hover { border-color: var(--ember); color: var(--ember); }
+
+@media (max-width: 1100px) {
+  .sp-rules { grid-template-columns: 1fr 1fr; }
+  .sp-rules > div:nth-child(3) { padding-left: 0; border-left: 0; }
+}
+@media (max-width: 600px) {
+  .sp-rules { grid-template-columns: 1fr; }
+  .sp-rules > div + div { padding-left: 0; border-left: 0; border-top: 1px solid var(--hairline); }
+  .sp-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .sp-stage { height: auto; width: 92vw; }
+}

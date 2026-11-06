@@ -7,8 +7,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css?v=22" />
-<link rel="stylesheet" href="sections.css?v=78" />
+<link rel="stylesheet" href="styles.css?v=23" />
+<link rel="stylesheet" href="sections.css?v=80" />
+<link rel="stylesheet" href="hero-intro.css?v=3" />
+<link rel="stylesheet" href="social.css?v=1" />
 <!-- Declared so the bundler inlines these and exposes them via window.__resources.
      JS files build DOM with these paths at runtime; the runtime fixup below
      rewrites attributes to blob URLs after each script runs. -->
@@ -55,12 +57,12 @@
 <div class="utility">
   <div class="util-l">
     <button class="nav-toggle" id="nav-toggle" aria-label="Open contents" aria-expanded="false"><span class="bars"></span><span class="nt-label" id="nt-label">Contents</span></button>
-    <span class="live">LIVE / V2.0 / JUL 2026</span>
+    <span class="live">LIVE / V2.0 / NOV 2026</span>
   </div>
   <div class="util-c">INTERNAL // SALES // DESIGN</div>
   <div class="util-r">
     <span>POWERUS_BBL_001</span>
-    <span>PG <span id="pg-now">00</span><span style="opacity:.5"> / 23</span></span>
+    <span>PG <span id="pg-now">00</span><span style="opacity:.5"> / 25</span></span>
   </div>
 </div>
 
@@ -74,7 +76,7 @@
   </div>
   <div class="rail-meta">
     Brand Operating System<br/>
-    V2.0 — July 2026<br/>
+    V2.0 — November 2026<br/>
     Issued by Brand Office
   </div>
   <nav>
@@ -186,12 +188,15 @@
 })();
 </script>
 <script src="toc.js?v=4"></script>
-<script src="sections.js?v=56"></script>
-<script src="sections-2.js?v=54"></script>
+<script src="sections.js?v=58"></script>
+<script src="sections-2.js?v=57"></script>
 <script src="sections-3.js?v=1"></script>
 <script src="sections-4.js?v=1"></script>
-<script src="reorder-motion.js?v=2"></script>
-<script src="cover-motion.js?v=11"></script>
+<script src="social.js?v=2"></script>
+<script src="reorder-motion.js?v=5"></script>
+<script src="hero-intro.js?v=6"></script>
+<script src="cover-motion.js?v=14"></script>
+<script src="asset-bank.js?v=3"></script>
 <script>
   // After all section scripts have run synchronously, sweep the whole
   // document once so any literal assets/* paths inside JS-injected
@@ -353,7 +358,7 @@
     a.addEventListener('click', (ev) => {
       ev.preventDefault();
       const css = [
-        '/* Powerus brand tokens — V2.0 / July 2026 */',
+        '/* Powerus brand tokens — V2.0 / November 2026 */',
         '/* Issued by the Powerus Brand Office. Do not modify. */',
         '',
         ':root {',
